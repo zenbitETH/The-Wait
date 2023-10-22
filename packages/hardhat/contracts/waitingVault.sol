@@ -47,10 +47,11 @@ contract SDaiDonor {
         deposits[msg.sender] -= originalAmount;
     }
 
-    function getTotalDeposits() public view returns (uint256) {
+      function getTotalDeposits() public view returns (uint256) {
         uint256 total = 0;
-        for (address donor : getDonors()) {
-            total += deposits[donor];
+        address[] memory donors = getDonors();
+        for (uint256 i = 0; i < donors.length; i++) {
+            total += deposits[donors[i]];
         }
         return total;
     }
